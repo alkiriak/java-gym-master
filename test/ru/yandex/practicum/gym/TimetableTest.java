@@ -31,7 +31,7 @@ public class TimetableTest {
         assertEquals(1, mondaySessions.size());
         assertTrue(mondaySessions.containsKey(time));
         assertEquals(1, mondaySessions.get(time).size());
-        assertSame(singleTrainingSession, mondaySessions.get(time).get(0));
+        assertSame(singleTrainingSession, mondaySessions.get(time).getFirst());
 
         assertNotNull(tuesdaySessions);
         assertTrue(tuesdaySessions.isEmpty());
@@ -75,7 +75,7 @@ public class TimetableTest {
 
         assertEquals(2, thursdaySessions.size());
         List<TimeOfDay> sortedTimes = new ArrayList<>(thursdaySessions.keySet());
-        assertEquals(new TimeOfDay(13, 0), sortedTimes.get(0));
+        assertEquals(new TimeOfDay(13, 0), sortedTimes.getFirst());
         assertEquals(new TimeOfDay(20, 0), sortedTimes.get(1));
 
         assertTrue(tuesdaySessions.isEmpty());
@@ -103,7 +103,7 @@ public class TimetableTest {
 
         // ASSERT
         assertEquals(1, monday13Sessions.size());
-        assertSame(singleTrainingSession, monday13Sessions.get(0));
+        assertSame(singleTrainingSession, monday13Sessions.getFirst());
         assertNotNull(monday14Sessions);
         assertTrue(monday14Sessions.isEmpty());
     }
@@ -168,7 +168,7 @@ public class TimetableTest {
 
         // ASSERT
         List<TimeOfDay> keys = new ArrayList<>(fridaySessions.keySet());
-        assertEquals(timeEarly, keys.get(0));
+        assertEquals(timeEarly, keys.getFirst());
         assertEquals(timeLate, keys.get(1));
     }
 
@@ -196,12 +196,12 @@ public class TimetableTest {
 
         // ASSERT
         assertEquals(1, mondaySessions.size());
-        assertSame(firstCoach, mondaySessions.get(0).getCoach());
-        assertSame(acrobatics, mondaySessions.get(0).getGroup());
+        assertSame(firstCoach, mondaySessions.getFirst().getCoach());
+        assertSame(acrobatics, mondaySessions.getFirst().getGroup());
 
         assertEquals(1, fridaySessions.size());
-        assertSame(secondCoach, fridaySessions.get(0).getCoach());
-        assertSame(acrobatics, fridaySessions.get(0).getGroup());
+        assertSame(secondCoach, fridaySessions.getFirst().getCoach());
+        assertSame(acrobatics, fridaySessions.getFirst().getGroup());
     }
 
     @Test
@@ -272,8 +272,8 @@ public class TimetableTest {
 
         // ASSERT
         assertEquals(3, result.size());
-        assertEquals(coach3, result.get(0).getKey());
-        assertEquals(3, result.get(0).getValue());
+        assertEquals(coach3, result.getFirst().getKey());
+        assertEquals(3, result.getFirst().getValue());
         assertEquals(coach2, result.get(1).getKey());
         assertEquals(2, result.get(1).getValue());
         assertEquals(coach1, result.get(2).getKey());
@@ -302,7 +302,7 @@ public class TimetableTest {
 
         // ASSERT
         assertEquals(2, result.size());
-        assertEquals(2, result.get(0).getValue());
+        assertEquals(2, result.getFirst().getValue());
         assertEquals(2, result.get(1).getValue());
         assertTrue(result.stream().anyMatch(e -> e.getKey().equals(coachA)));
         assertTrue(result.stream().anyMatch(e -> e.getKey().equals(coachB)));
@@ -327,8 +327,8 @@ public class TimetableTest {
 
         // ASSERT
         assertEquals(1, result.size());
-        assertEquals(coachInstance1, result.get(0).getKey());
-        assertEquals(2, result.get(0).getValue());
+        assertEquals(coachInstance1, result.getFirst().getKey());
+        assertEquals(2, result.getFirst().getValue());
     }
 
     @Test
